@@ -67,6 +67,19 @@ do while (currIndex .le. len(currString))
         end if
         if(currIndex .eq. len(currString)) then
                 print *, lineNum, currString(startIndex:currIndex)
+
+                lineLen = currIndex -1 - startIndex
+                if(lineLen .le. shortSize) then
+                        shortString = currString(startIndex:lastSpace -1)
+                        shortLine = lineNum
+                        shortSize = lineLen
+                end if
+                if(lineLen .ge. longSize) then
+                        longString = currString(startIndex:lastSpace -1)
+                        longLine = lineNum
+                        longSize = lineLen
+                end if
+
         end if
         currIndex = currIndex + 1
 end do 
