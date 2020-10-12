@@ -46,7 +46,9 @@ do while (currIndex .le. len(currString))
                 counter = counter + 1 
         end if
         if(counter .eq. 62) then
-                print *, lineNum, currString(startIndex:lastSpace-1)
+                !print *, lineNum, currString(startIndex:lastSpace-1)
+                write(*, "(i9, a1)",advance="no") lineNum, ""
+                print*, currString(startIndex:lastSpace-1)
                 counter = 1
 
                 lineLen = lastSpace -1 - startIndex
@@ -66,7 +68,9 @@ do while (currIndex .le. len(currString))
                 startIndex = lastSpace + 1
         end if
         if(currIndex .eq. len(currString)) then
-                print *, lineNum, currString(startIndex:currIndex)
+                !print *, lineNum, currString(startIndex:currIndex)
+                write(*,"(i9, a1)", advance="no") lineNum, ""
+                print*, currString(startIndex:currIndex)
 
                 lineLen = currIndex -1 - startIndex
                 if(lineLen .le. shortSize) then
