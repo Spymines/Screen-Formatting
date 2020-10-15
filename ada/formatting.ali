@@ -1,0 +1,78 @@
+V "GNAT Lib v2020"
+M P W=b
+P SS ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_DEFAULT_INITIALIZATION
+
+U formatting%b		formatting.adb		923f83ba NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+D ada.ads		20200228061809 76789da1 ada%s
+D a-comlin.ads		20200228061809 4aa66568 ada.command_line%s
+D a-except.ads		20200228061809 a7106115 ada.exceptions%s
+D a-ioexce.ads		20200228061809 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20200228061809 119b8fb3 ada.streams%s
+D a-tags.ads		20200228061809 edddc8f0 ada.tags%s
+D a-textio.ads		20200228061809 aef4d56d ada.text_io%s
+D a-unccon.ads		20200228061809 0e9b276f ada.unchecked_conversion%s
+D formatting.adb	20201015195015 92cd2cdb formatting%b
+D interfac.ads		20200228061809 5ab55268 interfaces%s
+D i-cstrea.ads		20200228061809 e53d8b8e interfaces.c_streams%s
+D system.ads		20200228061809 4635ec04 system%s
+D s-crtl.ads		20200228061809 0ebbdb71 system.crtl%s
+D s-exctab.ads		20200228061809 54135002 system.exception_table%s
+D s-ficobl.ads		20200228061809 078245e4 system.file_control_block%s
+D s-parame.ads		20200228061809 4752c4cb system.parameters%s
+D s-secsta.ads		20200327060539 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20200228061809 a7318a92 system.soft_links%s
+D s-stache.ads		20200228061809 a37c21ec system.stack_checking%s
+D s-stalib.ads		20200228061809 6b7a13f2 system.standard_library%s
+D s-stoele.ads		20200228061809 2dc34a04 system.storage_elements%s
+D s-traent.ads		20200228061809 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20200319060539 5ecf7212 system.unsigned_types%s
+D s-wchcon.ads		20200228061809 1b7d22d2 system.wch_con%s
+G a e
+G c Z b b [formatting standard 10 11 none]
+X 1 ada.ads
+16K9*Ada 20e8 9|1r6 2r5 4r6 5r5 7r6 8r5 12r15 19r5 19r48 22r15 23r9 29r14
+. 29r45 33r14 36r6
+X 2 a-comlin.ads
+36K13*Command_Line 144e21 9|7w10 8r9
+52V13*Argument{string} 9|19s77
+X 4 a-ioexce.ads
+18K13*IO_Exceptions 30e22 9|1w10 2r9 29r18
+26X4*End_Error 9|29r32
+X 7 a-textio.ads
+57K13*Text_IO 727e16 9|4w10 5r9 12r19 19r9 19r52 22r19 23r13 29r49 33r18
+. 36r10
+64P9*File_Type 9|12r27
+66n23*In_File{66E9} 9|19r60
+114U14*Open 9|19s17
+115p7 File{64P9} 9|19r23
+116e7 Mode{66E9} 9|19r40
+117a7 Name{string} 9|19r69
+129U14*Close 9|29s57
+129p22 File{64P9} 9|29r64
+264U14*New_Line 9|36s18
+312V13*End_Of_File{boolean} 9|22s27
+378U14*Get 9|23s21
+378p19 File{64P9} 9|23r26
+378e37 Item{character} 9|23r43
+392U14*Put 9|33s26
+X 9 formatting.adb
+10U11*formatting 10b11 37l5 37t15
+12p5 In_File{7|64P9} 19m31 19r31 22r39 23r34 29m72 29r72
+13e5 value{character} 23m51 26r30
+14a5 string_array(character) 26m9 33r32
+15i5 pos{integer} 21m5 25m9 25r16 26r22 32r18
+32i10 i{integer} 33r45
+
