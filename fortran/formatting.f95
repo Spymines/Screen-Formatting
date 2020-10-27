@@ -20,8 +20,8 @@ interface
        
         subroutine formatString(long_string, filesize, currString)
                 character(*) :: long_string
-                character(:), allocatable :: out, currString
-                integer :: filesize
+                character(:), allocatable :: out,tempString, currString
+                integer :: filesize, last, duplicates
         end subroutine formatString
 
 end interface
@@ -121,8 +121,9 @@ end subroutine read_file
 subroutine formatString(long_string, filesize, currString)
         character(*) :: long_string
         integer :: filesize, counter, i, currPos
-        integer :: ascii
-        character(:), allocatable :: currString
+        integer :: ascii, last, duplicates
+        character(:), allocatable :: tempString,currString
+
 
         counter = 0
         i = 1
@@ -133,21 +134,56 @@ subroutine formatString(long_string, filesize, currString)
                 end if
                 i = i + 1
         end do 
-        allocate(character(counter) :: currString)
+        allocate(character(counter) :: tempString)
         i = 1
         currPos = 1
         do while(i .le. filesize)
                 ascii = iachar(long_string(i:i))
                 if (ascii .lt. 48 .or. ascii .gt. 57) then
                         if (ascii .eq. 10) then
-                                currString(currPos:currPos) = " "
+                                tempString(currPos:currPos) = " "
                         else
-                                currString(currPos:currPos) = long_string(i:i)
+                                tempString(currPos:currPos) = long_string(i:i)
                         end if
                         currPos = currPos + 1
                 end if
                 i = i + 1
         end do
+
+
+        !Remove duplicate spaces
+        duplicates = 0
+        i = 0
+        last = 0
+        do while(i .lt. counter)
+                ascii = iachar(tempString(i:i))
+                if(ascii .eq. 32 .and. last .eq. 32) then
+                        duplicates = duplicates + 1
+                end if
+                last = ascii
+                i = i + 1
+        end do
+        
+
+        i = 0
+        last = 0
+        allocate(character(len(tempString)) :: currString)
+        !Rewrite the long_string removing extra spaces
+        do while(i .le. (len(tempString))) 
+                ascii = iachar(tempString(i:i))
+                if (ascii .ne. 32)then
+                        currString(i:i) = tempString(i:i)
+                else if (last .ne. 32)then
+                        currString(i:i) = tempString(i:i)
+                end if
+                i = i + 1
+                last = ascii
+        end do
+        !print*, duplicates
+        !print*, tempString
+        !print*, currString
+
+
 end subroutine formatString
 
 
