@@ -4,7 +4,7 @@
 (defvar line)
 (setq lineCount 0)
 
-(setq file (open (car(cdr *posix-argv* ) )))
+(setq file (open (car(cdr *posix-argv* ) )
 
       (loop for line = (read-line file nil :eof) ; stream, no error, :eof value
                   until (eq line :eof)
