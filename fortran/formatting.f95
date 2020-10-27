@@ -24,6 +24,11 @@ interface
                 integer :: filesize, last, duplicates
         end subroutine formatString
 
+        integer function countWords(line) result(out)
+                character(*) :: line
+                integer :: i, ascii, last
+        end function countWords
+
 end interface
 
 call GET_COMMAND_ARGUMENT(1, filename)
@@ -46,12 +51,12 @@ do while (currIndex .le. len(currString))
                 counter = counter + 1 
         end if
         if(counter .eq. 62) then
-                !print *, lineNum, currString(startIndex:lastSpace-1)
                 write(*, "(i9, a1)",advance="no") lineNum, ""
                 print*, currString(startIndex:lastSpace-1)
                 counter = 1
 
-                lineLen = lastSpace -1 - startIndex
+                !lineLen = lastSpace -1 - startIndex
+                lineLen = countWords(currString(startIndex:lastSpace-1))
                 if(lineLen .le. shortSize) then
                         shortString = currString(startIndex:lastSpace -1)
                         shortLine = lineNum 
@@ -179,27 +184,28 @@ subroutine formatString(long_string, filesize, currString)
                 i = i + 1
                 last = ascii
         end do
-        !print*, duplicates
-        !print*, tempString
-        !print*, currString
-
 
 end subroutine formatString
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+integer function countWords(line) result(out)
+        character(*) :: line
+        integer :: i, ascii, last 
+        i = 0
+        out = 0
+        last = 32
+        do while (i .lt. len(line))
+                ascii = iachar(line(i:i))
+                if(ascii .eq. 32 .and. last .ne. 32) then 
+                        out = out + 1
+                end if
+                i = i + 1
+                last = ascii 
+        end do 
+        !Add one to out to account for the last word in the line
+        out = out + 1
+        print*, out
+end function countWords
 
 
 
