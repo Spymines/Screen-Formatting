@@ -77,7 +77,8 @@ do while (currIndex .le. len(currString))
                 write(*,"(i9, a1)", advance="no") lineNum, ""
                 print*, currString(startIndex:currIndex)
 
-                lineLen = currIndex -1 - startIndex
+                !lineLen = currIndex -1 - startIndex
+                lineLen = countWords(currString(startIndex:lastSpace-1))
                 if(lineLen .le. shortSize) then
                         shortString = currString(startIndex:lastSpace -1)
                         shortLine = lineNum
