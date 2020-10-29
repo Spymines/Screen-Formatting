@@ -9,6 +9,7 @@ integer :: filesize, counter, lastSpace, lineNum, currIndex
 integer :: startIndex, shortSize, longSize, longLine, shortLine
 character(len = 60) ::longString, shortString
 character(len = 50) :: filename
+character(len = 12) :: longNum, shortNum
 
 interface
 
@@ -35,7 +36,7 @@ call GET_COMMAND_ARGUMENT(1, filename)
 call read_file(long_string, filesize, filename)
 call formatString(long_string, filesize, currString)
 
-print*,&
+write(*,"(a80)")&
 "123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*"
 startIndex = 1
 currIndex = 1
@@ -51,7 +52,7 @@ do while (currIndex .le. len(currString))
                 counter = counter + 1 
         end if
         if(counter .eq. 62) then
-                write(*, "(i9, a1)",advance="no") lineNum, ""
+                write(*, "(i8, a1)",advance="no") lineNum, ""
                 print*, currString(startIndex:lastSpace-1)
                 counter = 1
 
@@ -74,7 +75,7 @@ do while (currIndex .le. len(currString))
         end if
         if(currIndex .eq. len(currString)) then
                 !print *, lineNum, currString(startIndex:currIndex)
-                write(*,"(i9, a1)", advance="no") lineNum, ""
+                write(*,"(i8, a1)", advance="no") lineNum, ""
                 print*, currString(startIndex:currIndex)
 
                 !lineLen = currIndex -1 - startIndex
@@ -94,8 +95,13 @@ do while (currIndex .le. len(currString))
         currIndex = currIndex + 1
 end do 
 
-print*, "LONG", longLine, longString
-print*, "SHORT", shortLine, shortString
+!Converts line numbers to strings for printing
+write(longNum,*) longLine
+write(shortNum,*) shortLine
+
+
+write(*,"(a4,a3,a12,a1,a60)") "LONG","", adjustl(longNum),"", longString
+write(*,"(a5,a2,a12,a1,a60)") "SHORT","", adjustl(shortNum),"", shortString
 
 end program formatting
 
@@ -205,7 +211,7 @@ integer function countWords(line) result(out)
         end do 
         !Add one to out to account for the last word in the line
         out = out + 1
-        print*, out
+
 end function countWords
 
 
