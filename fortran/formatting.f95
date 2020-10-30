@@ -44,19 +44,24 @@ counter = 1
 lineNum = 1
 shortSize = 61
 longSize = -1
+
+!print*, currString(61:61)
+!print*, currString(62:62)
+
 do while (currIndex .le. len(currString))
-        if(counter .le. 61) then
+        if(counter .le. 62) then
                 if(currString(currIndex:currIndex) .eq. " ") then
                         lastSpace = currIndex
+                        !print*, currIndex
                 end if
-                counter = counter + 1 
+                !counter = counter + 1 
         end if
         if(counter .eq. 62) then
                 write(*, "(i8, a1)",advance="no") lineNum, ""
                 print*, currString(startIndex:lastSpace-1)
+                !print*, lastSpace
                 counter = 1
 
-                !lineLen = lastSpace -1 - startIndex
                 lineLen = countWords(currString(startIndex:lastSpace-1))
                 if(lineLen .le. shortSize) then
                         shortString = currString(startIndex:lastSpace -1)
@@ -64,9 +69,10 @@ do while (currIndex .le. len(currString))
                         shortSize = lineLen                       
                 end if
                 if(lineLen .ge. longSize) then
-                        longString = currString(startIndex:lastSpace -1)
+                        longString = currString(startIndex:lastSpace-1)
                         longLine = lineNum
                         longSize = lineLen
+                        !write(longString,*) currString(startIndex:lastSpace-1)
                 end if
 
                 lineNum = lineNum + 1
@@ -78,10 +84,9 @@ do while (currIndex .le. len(currString))
                 write(*,"(i8, a1)", advance="no") lineNum, ""
                 print*, currString(startIndex:currIndex)
 
-                !lineLen = currIndex -1 - startIndex
                 lineLen = countWords(currString(startIndex:lastSpace-1))
                 if(lineLen .le. shortSize) then
-                        shortString = currString(startIndex:lastSpace -1)
+                        shortString = currString(startIndex:len(currString))
                         shortLine = lineNum
                         shortSize = lineLen
                 end if
@@ -93,12 +98,17 @@ do while (currIndex .le. len(currString))
 
         end if
         currIndex = currIndex + 1
+        counter = counter + 1
+        !if(counter .eq. 63) then 
+        !        counter = 1
+        !end if
 end do 
 
 !Converts line numbers to strings for printing
 write(longNum,*) longLine
 write(shortNum,*) shortLine
 
+!print*, longString
 
 write(*,"(a4,a3,a12,a1,a60)") "LONG","", adjustl(longNum),"", longString
 write(*,"(a5,a2,a12,a1,a60)") "SHORT","", adjustl(shortNum),"", shortString
@@ -133,7 +143,7 @@ end subroutine read_file
 subroutine formatString(long_string, filesize, currString)
         character(*) :: long_string
         integer :: filesize, counter, i, currPos
-        integer :: ascii, last, duplicates
+        integer :: ascii, last, duplicates, curr
         character(:), allocatable :: tempString,currString
 
 
@@ -179,14 +189,17 @@ subroutine formatString(long_string, filesize, currString)
 
         i = 0
         last = 0
-        allocate(character(len(tempString)) :: currString)
+        curr = 1
+        allocate(character(len(tempString)-duplicates) :: currString)
         !Rewrite the long_string removing extra spaces
         do while(i .le. (len(tempString))) 
                 ascii = iachar(tempString(i:i))
                 if (ascii .ne. 32)then
-                        currString(i:i) = tempString(i:i)
+                        currString(curr:curr) = tempString(i:i)
+                        curr = curr + 1
                 else if (last .ne. 32)then
-                        currString(i:i) = tempString(i:i)
+                        currString(curr:curr) = tempString(i:i)
+                        curr = curr + 1
                 end if
                 i = i + 1
                 last = ascii
