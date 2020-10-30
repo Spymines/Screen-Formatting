@@ -69,6 +69,8 @@ do while (currIndex .le. len(currString))
                         shortSize = lineLen                       
                 end if
                 if(lineLen .ge. longSize) then
+                
+                        !THIS LINE IS MISSING FINAL O WHEN RUNNING TEST.TXT
                         longString = currString(startIndex:lastSpace-1)
                         longLine = lineNum
                         longSize = lineLen
