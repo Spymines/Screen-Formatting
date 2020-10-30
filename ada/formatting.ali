@@ -3,76 +3,128 @@ M P W=b
 P SS ZX
 
 RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTIONS
 RV NO_IO
+RV NO_NESTED_FINALIZATION
 RV NO_SECONDARY_STACK
 RV NO_DEFAULT_INITIALIZATION
 
-U formatting%b		formatting.adb		923f83ba NE OO SU IL
+U formatting%b		formatting.adb		9abeb551 NE OO SU IL
 W ada%s			ada.ads			ada.ali
+W ada.characters%s	a-charac.ads		a-charac.ali
+W ada.characters.handling%s  a-chahan.adb	a-chahan.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.unbounded_io%s  a-tiunio.ads	a-tiunio.ali
 Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
 
 D ada.ads		20200228061809 76789da1 ada%s
+D a-charac.ads		20200228061809 2d3ec45b ada.characters%s
+D a-chahan.ads		20200228061809 1601a50f ada.characters.handling%s
+D a-chlat1.ads		20200228061809 66457d31 ada.characters.latin_1%s
 D a-comlin.ads		20200228061809 4aa66568 ada.command_line%s
 D a-except.ads		20200228061809 a7106115 ada.exceptions%s
+D a-finali.ads		20200228061809 bf4f806b ada.finalization%s
 D a-ioexce.ads		20200228061809 e4a01f64 ada.io_exceptions%s
 D a-stream.ads		20200228061809 119b8fb3 ada.streams%s
+D a-string.ads		20200228061809 90ac6797 ada.strings%s
+D a-strmap.ads		20200228061809 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20200304060543 1656705b ada.strings.unbounded%s
+D a-suteio.ads		20200228061809 26d8e9aa ada.strings.unbounded.text_io%s
 D a-tags.ads		20200228061809 edddc8f0 ada.tags%s
 D a-textio.ads		20200228061809 aef4d56d ada.text_io%s
+D a-tiunio.ads		20200228061809 759c6b0c ada.text_io.unbounded_io%s
 D a-unccon.ads		20200228061809 0e9b276f ada.unchecked_conversion%s
-D formatting.adb	20201015195015 92cd2cdb formatting%b
+D formatting.adb	20201029231241 ef87a468 formatting%b
 D interfac.ads		20200228061809 5ab55268 interfaces%s
 D i-cstrea.ads		20200228061809 e53d8b8e interfaces.c_streams%s
 D system.ads		20200228061809 4635ec04 system%s
+D s-atocou.ads		20200228061809 b45c2d8d system.atomic_counters%s
 D s-crtl.ads		20200228061809 0ebbdb71 system.crtl%s
 D s-exctab.ads		20200228061809 54135002 system.exception_table%s
 D s-ficobl.ads		20200228061809 078245e4 system.file_control_block%s
+D s-finmas.ads		20200228061809 7811a767 system.finalization_masters%s
+D s-finroo.ads		20200228061809 4ff27390 system.finalization_root%s
+D s-memory.ads		20200228061809 597d6634 system.memory%s
 D s-parame.ads		20200228061809 4752c4cb system.parameters%s
 D s-secsta.ads		20200327060539 9b3ab94b system.secondary_stack%s
 D s-soflin.ads		20200228061809 a7318a92 system.soft_links%s
 D s-stache.ads		20200228061809 a37c21ec system.stack_checking%s
 D s-stalib.ads		20200228061809 6b7a13f2 system.standard_library%s
+D s-stalib.adb		20200228061809 f2fe2716 system.standard_library%b
 D s-stoele.ads		20200228061809 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20200313060446 e9fa2dd8 system.storage_pools%s
+D s-stposu.ads		20200317060514 e251976f system.storage_pools.subpools%s
+D s-stratt.ads		20200424050625 9a2744e9 system.stream_attributes%s
 D s-traent.ads		20200228061809 005bf670 system.traceback_entries%s
 D s-unstyp.ads		20200319060539 5ecf7212 system.unsigned_types%s
 D s-wchcon.ads		20200228061809 1b7d22d2 system.wch_con%s
 G a e
-G c Z b b [formatting standard 10 11 none]
+G c Z b b [formatting standard 24 11 none]
 X 1 ada.ads
-16K9*Ada 20e8 9|1r6 2r5 4r6 5r5 7r6 8r5 12r15 19r5 19r48 22r15 23r9 29r14
-. 29r45 33r14 36r6
-X 2 a-comlin.ads
-36K13*Command_Line 144e21 9|7w10 8r9
-52V13*Argument{string} 9|19s77
-X 4 a-ioexce.ads
-18K13*IO_Exceptions 30e22 9|1w10 2r9 29r18
-26X4*End_Error 9|29r32
-X 7 a-textio.ads
-57K13*Text_IO 727e16 9|4w10 5r9 12r19 19r9 19r52 22r19 23r13 29r49 33r18
-. 36r10
-64P9*File_Type 9|12r27
-66n23*In_File{66E9} 9|19r60
-114U14*Open 9|19s17
-115p7 File{64P9} 9|19r23
-116e7 Mode{66E9} 9|19r40
-117a7 Name{string} 9|19r69
-129U14*Close 9|29s57
-129p22 File{64P9} 9|29r64
-264U14*New_Line 9|36s18
-312V13*End_Of_File{boolean} 9|22s27
-378U14*Get 9|23s21
-378p19 File{64P9} 9|23r26
-378e37 Item{character} 9|23r43
-392U14*Put 9|33s26
-X 9 formatting.adb
-10U11*formatting 10b11 37l5 37t15
-12p5 In_File{7|64P9} 19m31 19r31 22r39 23r34 29m72 29r72
-13e5 value{character} 23m51 26r30
-14a5 string_array(character) 26m9 33r32
-15i5 pos{integer} 21m5 25m9 25r16 26r22 32r18
-32i10 i{integer} 33r45
+16K9*Ada 20e8 18|5r6 6r5 8r6 9r5 11r6 12r5 14r6 15r5 17r6 18r5 20r6 21r5
+. 26r19 27r17 28r22 34r9 34r52 36r19 37r17 37r80 38r17 43r20 45r25 47r52
+. 48r25 59r9
+X 2 a-charac.ads
+16K13*Characters 18e19 18|20r10 21r9 47r56
+X 3 a-chahan.ads
+36K24*Handling 159e28 18|20w21 21r20 47r67
+50V13*Is_Digit{boolean} 18|47s76
+X 5 a-comlin.ads
+36K13*Command_Line 144e21 18|17w10 18r9
+52V13*Argument{string} 18|34s81
+X 8 a-ioexce.ads
+18K13*IO_Exceptions 30e22 18|5w10 6r9
+X 10 a-string.ads
+16K13*Strings 35e16 18|8r10 9r9 27r21 28r26 37r21 38r21 43r24 45r29 48r29
+X 12 a-strunb.ads
+82K21*Unbounded 758e26 18|8w18 9r17 27r29 28r34 37r29 38r29 43r32 45r37 48r37
+87R9*Unbounded_String<7|43R9> 741e14 18|27r39 28r44
+92V13*Length{natural} 18|43s42
+135U14*Append 18|37s39 38s39
+136r7 Source{87R9} 18|37r46 38r46
+137a7 New_Item{string} 18|37r68 38r68
+191V13*Element{character} 18|45s47
+594U14*Delete 18|48s47
+X 15 a-textio.ads
+57K13*Text_IO 727e16 18|11r10 12r9 14w10 15r9 26r23 34r13 34r56 36r23 37r84
+. 59r13
+64P9*File_Type 18|26r31
+66n23*In_File{66E9} 18|34r64
+114U14*Open 18|34s21
+115p7 File{64P9} 18|34r27
+116e7 Mode{66E9} 18|34r44
+117a7 Name{string} 18|34r73
+312V13*End_Of_File{boolean} 18|36s31
+492V13*Get_Line{string} 18|37s92
+492p23 File{64P9} 18|37r101
+X 16 a-tiunio.ads
+25K21*Unbounded_IO 61e29 18|11w18 12r17 59r21
+41U14*Put_Line=43:42 18|59s34
+X 18 formatting.adb
+24U11*formatting 24b11 61l5 61t15
+26p9 In_File{15|64P9} 34m35 34r35 36r43 37r109
+27r9 value{12|87R9}
+28r9 longString{12|87R9} 37m56 37r56 38m56 38r56 43r49 45r55 48m54 48r54
+. 59r43
+29i9 i{integer} 41m9 43r15 45r67 48r66 48r69 49m25 49r30 54m17 54r22
+30e9 last{character} 42m9 47r21 51m25
+30e15 curr{character} 45m17 47r36 47r85 51r33
+X 21 system.ads
+67M9*Address
+X 28 s-memory.ads
+53V13*Alloc{21|67M9} 103i<c,__gnat_malloc>22
+68U14*Free 104i<c,__gnat_free>22
+76V13*Realloc{21|67M9} 105i<c,__gnat_realloc>22
+X 34 s-stalib.adb
+93U14 Break_Start 94i<c,__gnat_break_start>22
 

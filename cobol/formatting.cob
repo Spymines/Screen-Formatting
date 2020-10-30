@@ -8,6 +8,7 @@
                         ORGANIZATION IS LINE SEQUENTIAL.
 
         DATA DIVISION.
+        01 generalInput PIC(256).
         WORKING-STORAGE SECTION.
         01 command1 PIC X(50).
          
