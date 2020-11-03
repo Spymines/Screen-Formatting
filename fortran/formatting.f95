@@ -7,7 +7,7 @@ program formatting
 character(:), allocatable :: long_string, currString
 integer :: filesize, counter, lastSpace, lineNum, currIndex
 integer :: startIndex, shortSize, longSize, longLine, shortLine
-character(len = 60) ::longString, shortString
+character(len = 61) ::longString, shortString
 character(len = 50) :: filename
 character(len = 12) :: longNum, shortNum
 
@@ -52,9 +52,7 @@ do while (currIndex .le. len(currString))
         if(counter .le. 62) then
                 if(currString(currIndex:currIndex) .eq. " ") then
                         lastSpace = currIndex
-                        !print*, currIndex
-                end if
-                !counter = counter + 1 
+                end if 
         end if
         if(counter .eq. 62) then
                 write(*, "(i8, a1)",advance="no") lineNum, ""
@@ -74,9 +72,7 @@ do while (currIndex .le. len(currString))
                         longString = currString(startIndex:lastSpace-1)
                         longLine = lineNum
                         longSize = lineLen
-                        !write(longString,*) currString(startIndex:lastSpace-1)
                 end if
-
                 lineNum = lineNum + 1
                 currIndex = lastSpace
                 startIndex = lastSpace + 1
@@ -112,8 +108,8 @@ write(shortNum,*) shortLine
 
 !print*, longString
 
-write(*,"(a4,a3,a12,a1,a60)") "LONG","", adjustl(longNum),"", longString
-write(*,"(a5,a2,a12,a1,a60)") "SHORT","", adjustl(shortNum),"", shortString
+write(*,"(a4,a3,a12,a1,a61)") "LONG","", adjustl(longNum),"", longString
+write(*,"(a5,a2,a12,a1,a61)") "SHORT","", adjustl(shortNum),"", shortString
 
 end program formatting
 
