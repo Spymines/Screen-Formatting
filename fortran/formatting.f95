@@ -2,6 +2,12 @@
 !CSC 330
 !Screen Formatting Project
 
+!My program loops through finding spaces rather than tokenizing the input.
+!The input is checked char by char and when a space is found it's location
+!is noted. When 61 chars have been checked (61 is checked to see if a word ends
+!on 60) the line is printed from it's start to the last space found.
+
+
 program formatting
 
 character(:), allocatable :: long_string, currString
@@ -36,8 +42,10 @@ call GET_COMMAND_ARGUMENT(1, filename)
 call read_file(long_string, filesize, filename)
 call formatString(long_string, filesize, currString)
 
-write(*,"(a80)")&
-"123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*"
+!Column marker that can be uncommented if needed
+!write(*,"(a80)")&
+!"123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*"
+
 startIndex = 1
 currIndex = 1
 counter = 1
@@ -45,19 +53,18 @@ lineNum = 1
 shortSize = 61
 longSize = -1
 
-!print*, currString(61:61)
-!print*, currString(62:62)
-
+!Loops through the string while currIndex != the length of the string
 do while (currIndex .le. len(currString))
-        if(counter .le. 62) then
+         !Sets last space if a space is found at the current location
+         if(counter .le. 62) then
                 if(currString(currIndex:currIndex) .eq. " ") then
                         lastSpace = currIndex
                 end if 
         end if
+        !Outputs the line and checks to see if it is the longest or shortest
         if(counter .eq. 62) then
                 write(*, "(i8, a1)",advance="no") lineNum, ""
                 print*, currString(startIndex:lastSpace-1)
-                !print*, lastSpace
                 counter = 1
 
                 lineLen = countWords(currString(startIndex:lastSpace-1))
@@ -67,8 +74,6 @@ do while (currIndex .le. len(currString))
                         shortSize = lineLen                       
                 end if
                 if(lineLen .ge. longSize) then
-                
-                        !THIS LINE IS MISSING FINAL O WHEN RUNNING TEST.TXT
                         longString = currString(startIndex:lastSpace-1)
                         longLine = lineNum
                         longSize = lineLen
@@ -77,8 +82,9 @@ do while (currIndex .le. len(currString))
                 currIndex = lastSpace
                 startIndex = lastSpace + 1
         end if
+        !Prints last line and checks to see if it is longest or shortest when
+        !the end of the file is reached
         if(currIndex .eq. len(currString)) then
-                !print *, lineNum, currString(startIndex:currIndex)
                 write(*,"(i8, a1)", advance="no") lineNum, ""
                 print*, currString(startIndex:currIndex)
 
@@ -97,17 +103,13 @@ do while (currIndex .le. len(currString))
         end if
         currIndex = currIndex + 1
         counter = counter + 1
-        !if(counter .eq. 63) then 
-        !        counter = 1
-        !end if
 end do 
 
 !Converts line numbers to strings for printing
 write(longNum,*) longLine
 write(shortNum,*) shortLine
 
-!print*, longString
-
+!Printing of long and short information
 write(*,"(a4,a3,a12,a1,a61)") "LONG","", adjustl(longNum),"", longString
 write(*,"(a5,a2,a12,a1,a61)") "SHORT","", adjustl(shortNum),"", shortString
 
@@ -205,7 +207,7 @@ subroutine formatString(long_string, filesize, currString)
 
 end subroutine formatString
 
-
+!Returns the number of words in the string that is passed in
 integer function countWords(line) result(out)
         character(*) :: line
         integer :: i, ascii, last 
