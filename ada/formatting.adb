@@ -23,6 +23,33 @@ use Ada.Characters.Handling;
 
 procedure formatting is
 
+	procedure stdPrint(currLine : in string; lineNum : in Integer) is
+		temp,x: integer;
+	begin
+		x := 1;
+		temp := 8 - (Integer'Image(lineNum)'Length);
+		while x <= temp loop
+			Ada.Text_IO.Put(" ");
+			x := x + 1;
+		end loop;
+        	Ada.Text_IO.Put(Integer'Image(lineNum));
+       		Ada.Text_IO.Put("  ");
+        	Ada.Text_IO.Put_Line(currLine);
+	end stdPrint;
+
+	procedure longShortPrint(currLine : in string; lineNum : in Integer) is
+		temp,x : Integer;
+	begin
+		x := 1;
+		temp := 14-(Integer'Image(lineNum)'Length);
+		Ada.Text_IO.Put(Integer'Image(lineNum));
+		while x <= temp loop
+			Ada.Text_IO.Put(" ");
+			x := x + 1; 
+		end loop;
+		Ada.Text_IO.Put_Line(currLine);
+	end longShortPrint;
+
 	In_File : Ada.Text_IO.File_Type;
 	value : Ada.Strings.Unbounded.Unbounded_String;
 	longString : Ada.Strings.Unbounded.Unbounded_String;
@@ -32,6 +59,7 @@ procedure formatting is
 	currChar : character;
 	wordCount, longLine, shortLine, shortSize, longSize : integer;
 	longest, shortest : Ada.Strings.Unbounded.Unbounded_String;
+
 
 begin
 
@@ -81,9 +109,7 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 		end if;
 		--Handles all lines except last line
 		if counter = 61 then
-			Ada.Text_IO.Put(Integer'Image(lineNum));
-			Ada.Text_IO.Put("  ");
-			Ada.Text_IO.Put_Line(Ada.Strings.Unbounded.Slice(longString,startIndex,lastSpace -1));
+			stdPrint(Ada.Strings.Unbounded.Slice(longString,startIndex,lastSpace),lineNum);
 
 			if wordCount <= shortSize then
 				shortest := Ada.Strings.Unbounded.Unbounded_Slice(longString, startIndex, lastSpace);
@@ -104,10 +130,7 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 		end if;
 		--Handles last line
 		if currIndex = Ada.Strings.Unbounded.Length(longString) then
-			Ada.Text_IO.Put(Integer'Image(lineNum));
-			Ada.Text_IO.Put("  ");
-			Ada.Text_IO.Put_Line(Ada.Strings.Unbounded.Slice(longString, startIndex, currIndex));
-
+			stdPrint(Ada.Strings.Unbounded.Slice(longString, startIndex, currIndex), lineNum);
 			if wordCount <= shortSize then
                                 shortest := Ada.Strings.Unbounded.Unbounded_Slice(longString, startIndex, currIndex);
                                 shortLine := lineNum;
@@ -127,16 +150,20 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 		counter := counter + 1;	
 	end loop;
 Ada.Text_IO.Put("Long  ");
-Ada.Text_IO.Put(Integer'Image(longLine));
-Ada.Text_IO.Put("  ");
-Ada.Text_IO.Unbounded_IO.Put_Line(longest); 	
+longShortPrint(Ada.Strings.Unbounded.To_String(longest), longLine); 	
 
-Ada.Text_IO.Put("Short  ");
-Ada.Text_IO.Put(Integer'Image(shortLine));
-Ada.Text_IO.Put(" ");
-Ada.Text_IO.Unbounded_IO.Put_Line(shortest);
+Ada.Text_IO.Put("Short ");
+longShortPrint(Ada.Strings.Unbounded.To_String(shortest), shortLine);
 
 end formatting;
+
+
+
+
+
+
+
+
 
 
 
