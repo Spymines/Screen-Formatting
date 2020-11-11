@@ -63,7 +63,8 @@ procedure formatting is
 
 begin
 
-Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*123456789*123456789*");
+--Column header, can be uncommented out to be used
+--Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*123456789*123456789*");
 
 
 	Ada.Text_IO.Open (File => In_File, Mode => Ada.Text_IO.In_File, Name => Argument(1));
@@ -75,6 +76,7 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 
 	i := 1;
 	last := 'a';
+	--Formats input to specified form
 	while i <= Ada.Strings.Unbounded.Length(longString) loop
 		--Gets Current Character
 		curr := Ada.Strings.Unbounded.Element(longString, i);
@@ -99,6 +101,7 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 	shortLine := 0;
 	longLine := 0;
 
+	--Loops through the entire formatted string
 	while currIndex <= Ada.Strings.Unbounded.Length(LongString) loop 
 		currChar := Ada.Strings.Unbounded.Element(longString, currIndex);
 		if counter <= 61 then
@@ -111,11 +114,13 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 		if counter = 61 then
 			stdPrint(Ada.Strings.Unbounded.Slice(longString,startIndex,lastSpace),lineNum);
 
+			--Checks to see if the line has the lowest word count
 			if wordCount <= shortSize then
 				shortest := Ada.Strings.Unbounded.Unbounded_Slice(longString, startIndex, lastSpace);
 				shortLine := lineNum;
 				shortSize := wordCount;	
 			end if;
+			--Checks to see if the line has the highest word count
 			if wordCount >= longSize then
 				longest := Ada.Strings.Unbounded.Unbounded_Slice(longString, startIndex, lastSpace);
 				longLine := lineNum;
@@ -131,11 +136,13 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 		--Handles last line
 		if currIndex = Ada.Strings.Unbounded.Length(longString) then
 			stdPrint(Ada.Strings.Unbounded.Slice(longString, startIndex, currIndex), lineNum);
+			--Checks to see if the line has the lowest word count
 			if wordCount <= shortSize then
                                 shortest := Ada.Strings.Unbounded.Unbounded_Slice(longString, startIndex, currIndex);
                                 shortLine := lineNum;
                                 shortSize := wordCount;
                         end if;
+			--Checks to see if the line has the highest word count
                         if wordCount >= longSize then
                                 longest := Ada.Strings.Unbounded.Unbounded_Slice(longString, startIndex, currIndex);
                                 longLine := lineNum;
@@ -149,6 +156,8 @@ Ada.Text_IO.Put_Line("123456789*123456789*123456789*123456789*123456789*12345678
 		currIndex := currIndex + 1;
 		counter := counter + 1;	
 	end loop;
+--Prints the lines with the highest and lowest word count in 
+--the specified format
 Ada.Text_IO.Put("Long  ");
 longShortPrint(Ada.Strings.Unbounded.To_String(longest), longLine); 	
 
